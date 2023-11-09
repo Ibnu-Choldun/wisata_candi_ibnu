@@ -1,26 +1,26 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
-  SignInScreen ({super.key});
+class SignUpScreen extends StatefulWidget {
+  SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   // TODO : 1. Deklarasi Variabel
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullnameController = TextEditingController();
 
   String _errorText = '';
-  bool _isSignedIn = false;
   bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       // TODO : 2. Pasang Appbar
-      appBar: AppBar(title: Text('Sign In'),),
+      appBar: AppBar(title: Text('Sign Up'),),
       // TODO : 3. Pasang body
       body: Center(
         child: SingleChildScrollView(
@@ -31,7 +31,15 @@ class _SignInScreenState extends State<SignInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                TextFormField(
+                  controller: _fullnameController,
+                  decoration: InputDecoration(
+                    labelText: "Nama Lengkap",
+                    border: OutlineInputBorder(),
+                  ),
+                ),
                 // TODO : 5. Pasang TextFormField Nama Pengguna
+                SizedBox(height: 20),
                 TextFormField(
                   controller: _usernameController,
                   decoration: InputDecoration(
@@ -73,23 +81,21 @@ class _SignInScreenState extends State<SignInScreen> {
                         _errorText = 'Password harus berisi lowercase';
                       }else if(!_passwordController.value.text.contains(RegExp(r'[0-9]'))){
                         _errorText = 'Password harus berisi angka';
-                      }else if(!_passwordController.value.text.contains(RegExp(r'[_/*.,]'))){
-                        _errorText = 'Password harus berisi karakter spesial (_/*.,)';
+                      }else if(!_passwordController.value.text.contains(RegExp(r'[/*.,]'))){
+                        _errorText = 'Password harus berisi karakter spesial (/*.,)';
                       }else if(
-                      _passwordController.value.text.contains(_usernameController.value.text)
+                      _passwordController.value.text.contains(_fullnameController.value.text) ||
+                          _passwordController.value.text.contains(_usernameController.value.text)
                       ){
-                        _errorText = 'Password harus berisi nama pengguna anda';
+                        _errorText = 'Password harus berisi nama atau nama pengguna anda';
                       } else {
                         _errorText = '';
                       }
 
                     },
-                    child: Text('Sign In')),
+                    child: Text('Sign Up')),
                 // TODO : 8. Pasang TextButton Sign Up
                 SizedBox(height: 10),
-                TextButton(
-                    onPressed: (){},
-                    child: Text('Belum punya akun? Daftar di sini.')),
                 RichText(
                     text: TextSpan(
                         text: 'Belum punya akun?',
