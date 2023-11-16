@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});
 
@@ -14,8 +15,11 @@ class _ProfilScreenState extends State<ProfilScreen> {
 
   // TODO: 5. Implementasi fungsi singin
   void signIn () {
+    Navigator.pushNamed(
+        context, '/sign_in'
+    );
     setState(() {
-      isSignedIn = !isSignedIn;
+      // isSignedIn = !isSignedIn;
     });
   }
   // TODO: 6. Implementasi fungsi singout
@@ -118,9 +122,9 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     SizedBox(width: MediaQuery.of(context).size.width / 3,
                       child: Row(
                         children:[
-                          Icon(Icons.person, color: Colors.blue),
+                          Icon(Icons.favorite, color: Colors.red),
                           SizedBox(width: 8),
-                          Text('Nama', style: TextStyle(
+                          Text('Favorite', style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold,
                           ),),
                         ],

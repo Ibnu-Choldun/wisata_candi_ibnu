@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:wisata_candi/screens/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen ({super.key});
@@ -65,31 +66,32 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(height: 20),
                 ElevatedButton(
                     onPressed: (){
-                      if(_passwordController.value.text.length < 8){
-                        _errorText = "Password harus lebih dari atau sama dengan 8 karakter";
-                      } else if(!_passwordController.value.text.contains(RegExp(r'[A-z]'))){
-                        _errorText = 'Password harus berisi uppercase';
-                      }else if(!_passwordController.value.text.contains(RegExp(r'[a-z]'))){
-                        _errorText = 'Password harus berisi lowercase';
-                      }else if(!_passwordController.value.text.contains(RegExp(r'[0-9]'))){
-                        _errorText = 'Password harus berisi angka';
-                      }else if(!_passwordController.value.text.contains(RegExp(r'[_/*.,]'))){
-                        _errorText = 'Password harus berisi karakter spesial (_/*.,)';
-                      }else if(
-                      _passwordController.value.text.contains(_usernameController.value.text)
-                      ){
-                        _errorText = 'Password harus berisi nama pengguna anda';
-                      } else {
-                        _errorText = '';
-                      }
-
+                      setState(() {
+                        // if(_passwordController.value.text.length < 8){
+                        //   _errorText = "Password harus lebih dari atau sama dengan 8 karakter";
+                        // } else if(!_passwordController.value.text.contains(RegExp(r'[A-z'))){
+                        //   _errorText = 'Password harus berisi uppercase';
+                        // }else if(!_passwordController.value.text.contains(RegExp(r'[a-z]'))){
+                        //   _errorText = 'Password harus berisi lowercase';
+                        // }else if(!_passwordController.value.text.contains(RegExp(r'[0-9]'))){
+                        //   _errorText = 'Password harus berisi angka';
+                        // }else if(!_passwordController.value.text.contains(RegExp(r'[_/*.,]'))){
+                        //   _errorText = 'Password harus berisi karakter spesial (_/*.,)';
+                        // }else if(
+                        //     _passwordController.value.text.contains(_usernameController.value.text)
+                        // ){
+                        //   _errorText = 'Password harus berisi nama pengguna anda';
+                        // } else {
+                        //   _errorText = '';
+                      });
+                      Navigator.pop(context);
                     },
                     child: Text('Sign In')),
                 // TODO : 8. Pasang TextButton Sign Up
                 SizedBox(height: 10),
-                TextButton(
-                    onPressed: (){},
-                    child: Text('Belum punya akun? Daftar di sini.')),
+                // TextButton(
+                //     onPressed: (){},
+                //     child: Text('Belum punya akun? Daftar di sini.')),
                 RichText(
                     text: TextSpan(
                         text: 'Belum punya akun?',
@@ -103,7 +105,11 @@ class _SignInScreenState extends State<SignInScreen> {
                                 fontSize: 16
                             ),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () {},
+                              ..onTap = () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => SignUpScreen())
+                                );
+                              },
                           )
                         ]
                     ))

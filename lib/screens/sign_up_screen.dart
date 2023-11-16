@@ -73,46 +73,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(height: 20),
                 ElevatedButton(
                     onPressed: (){
-                      if(_passwordController.value.text.length < 8){
-                        _errorText = "Password harus lebih dari atau sama dengan 8 karakter";
-                      } else if(!_passwordController.value.text.contains(RegExp(r'[A-z]'))){
-                        _errorText = 'Password harus berisi uppercase';
-                      }else if(!_passwordController.value.text.contains(RegExp(r'[a-z]'))){
-                        _errorText = 'Password harus berisi lowercase';
-                      }else if(!_passwordController.value.text.contains(RegExp(r'[0-9]'))){
-                        _errorText = 'Password harus berisi angka';
-                      }else if(!_passwordController.value.text.contains(RegExp(r'[/*.,]'))){
-                        _errorText = 'Password harus berisi karakter spesial (/*.,)';
-                      }else if(
-                      _passwordController.value.text.contains(_fullnameController.value.text) ||
-                          _passwordController.value.text.contains(_usernameController.value.text)
-                      ){
-                        _errorText = 'Password harus berisi nama atau nama pengguna anda';
-                      } else {
-                        _errorText = '';
-                      }
-
+                      setState(() {
+                        // if(_passwordController.value.text.length < 8){
+                        //   _errorText = "Password harus lebih dari atau sama dengan 8 karakter";
+                        // } else if(!_passwordController.value.text.contains(RegExp(r'[A-z'))){
+                        //   _errorText = 'Password harus berisi uppercase';
+                        // }else if(!_passwordController.value.text.contains(RegExp(r'[a-z]'))){
+                        //   _errorText = 'Password harus berisi lowercase';
+                        // }else if(!_passwordController.value.text.contains(RegExp(r'[0-9]'))){
+                        //   _errorText = 'Password harus berisi angka';
+                        // }else if(!_passwordController.value.text.contains(RegExp(r'[/*.,]'))){
+                        //   _errorText = 'Password harus berisi karakter spesial (/*.,)';
+                        // }else if(
+                        // _passwordController.value.text.contains(_fullnameController.value.text) ||
+                        //     _passwordController.value.text.contains(_usernameController.value.text)
+                        // ){
+                        //   _errorText = 'Password harus berisi nama atau nama pengguna anda';
+                        // } else {
+                        //   _errorText = '';
+                        // }
+                      });
+                      Navigator.pop(context);
                     },
-                    child: Text('Sign Up')),
-                // TODO : 8. Pasang TextButton Sign Up
-                SizedBox(height: 10),
-                RichText(
-                    text: TextSpan(
-                        text: 'Belum punya akun?',
-                        style: TextStyle(fontSize: 16, color: Colors.deepPurple),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Daftar di sini.',
-                            style: TextStyle(
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                                fontSize: 16
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {},
-                          )
-                        ]
-                    ))
+                    child: Text('Sign In')
+                ),
               ],
             ),
           ),
@@ -121,3 +105,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
