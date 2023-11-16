@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
       // home : SearchScreen(),
       // home: HomeScreen(),
       // home: MainScreen(),
+      //home: FavoriteScreen(),
     );
   }
 }
